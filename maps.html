@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+        #map-canvas {
+            width: 770px;
+            height: 481px;
+        }
+    </style>
+</head>
+<body>
+    <!-- div to hold map -->
+    <button id="tilt">Toggle the tilt of the map between 0 or 45 degrees</button>
+
+    <label for="address">Address</label>
+    <input type="text" id="address" placeholder="input the address you want here">
+    <button id="getAddress">Map It!</button>
+
+    <div id="map-canvas"></div>
+
+    <!-- Load the Google Maps API [DON'T FORGET TO USE A KEY] -->
+    <script src="https://maps.googleapis.com/maps/api/js?key="AIzaSyCwWMU2bitY94Z79E1PUU6cQbzSwYpF5Vo"></script>
+
+
+    <!-- Script to show address on map -->
+    <script type="text/javascript">
+
+        "use strict";
+
+        // Set our map options
+        var mapOptions = {
+            draggable: false,
+            mapTypeId: 'satellite',
+            tilt: 0,
+
+            // Set the zoom level
+            zoom: 19,
+
+            // This sets the center of the map at our location
+            center: {
+                lat:  29.426791,
+                lng: -98.489602
+            }
+        };
+
+        // Render the map
+        var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+
+        var codeup = { lat: 29.426791, lng: -98.489602 };
+
+        // Add the marker to our existing map
+        var marker = new google.maps.Marker({
+            position: codeup,
+            map: map
+        });
+
+
+        var infowindow = new google.maps.InfoWindow({
+            content: "Changing the world, one programmer at a time."
+        });
+
+        // Open the window using our map and marker
+        infowindow.open(map, marker);
+
+        console.log(map);
+
+        document.getElementById("tilt").addEventListener("click", function() {
+            if(map.tilt == 0) {
+                map.setTilt(45);
+            } else {
+                map.setTilt(0);
+            }
+        });
+
+    </script>
+</body>

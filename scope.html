@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>scope demo</title>
+</head>
+<body>
+<h1>Scope!</h1>
+<h2>So fresh! So clean!</h2>
+<script>
+
+	(function () {
+		"use strict";
+		var languagePreference = "english";
+		////
+
+		function getLanguagePreference() {
+			console.log("your current language preference is " + languagePreference);
+			var answer = confirm("Is this correct?");
+			if(!answer) {
+				languagePreference = prompt("Ok then, what is it, actually?");
+			}
+		}
+		getLanguagePreference();
+	})();
+
+</script>
+</body>
+</html>

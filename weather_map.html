@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Weather Map</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+</head>
+
+<body>
+
+    <main class="container">
+        
+		<h1>Weather Map</h1>
+
+
+    </main>
+    
+    <!-- jQuery Version 2.2.4 -->
+    <script src="http://code.jquery.com/jquery-2.2.4.min.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <!-- Custom JS -->
+
+    <script>
+    	$(document).ready(function(){
+    		"use strict";
+
+
+    		var APPID = "7f8e3aa0aad113510e0c1eaafd1c17b8";
+    		var url = "http://api.openweathermap.org/data/2.5/forecast/daily";
+
+    		// make a function for making an Ajax request to the OpenWeatherMap API to return a weather object
+    		function getWeatherFromCoordinates(latitude, longitude) {
+    			$.get(url, {
+    				APPID: APPID,
+    				lat: latitude,
+    				lon: longitude,
+    				cnt: 1,
+    				units: "imperial"
+    			}).fail(function(data, status) {
+    				alert("Failed to load:" + status);
+    			}).done(function(data) {
+    				console.log(data);
+    			});
+    		}
+
+    		var lat = 29.444;
+    		var lng = -123.8828;
+
+    		getWeather(lat, lng);
+
+
+
+    	});
+
+    	$("#location").click(function() {
+    		var lat = parseFloat($("#latitude").val());
+    		var longitude = parseFloat($("#longitude").val());
+
+	    	if(!lat || !longitude)
+	    		alert("gotta have both lat and long");
+	    	} else {
+	    		getWeather(lat, longitude);
+	    	}
+
+	    });
+
+
+    </script>
+
+</body>
+
+</html>
